@@ -10,15 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var monsterImage: UIImageView!
+    @IBOutlet weak var monsterImage:    UIImageView!
+    //In order for these to actually be draggable, you need to check 
+    //the "User Interaction enabled" checkbox in the attribute inspector
+    @IBOutlet weak var foodImage:       DragImage!
+    @IBOutlet weak var healthImage:     DragImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupMonster()
     }
-
-
+    
     func setupMonster() {
         var imageArr = [UIImage]()
         

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DDB471351CBB3E9F00BDECE9 /* DragImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB471341CBB3E9F00BDECE9 /* DragImage.swift */; };
 		DDC92E3F1CBAFD170074B8DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC92E3E1CBAFD170074B8DF /* AppDelegate.swift */; };
 		DDC92E411CBAFD170074B8DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC92E401CBAFD170074B8DF /* ViewController.swift */; };
 		DDC92E441CBAFD170074B8DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC92E421CBAFD170074B8DF /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DDB471341CBB3E9F00BDECE9 /* DragImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragImage.swift; sourceTree = "<group>"; };
 		DDC92E3B1CBAFD170074B8DF /* mylittlemonster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mylittlemonster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC92E3E1CBAFD170074B8DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDC92E401CBAFD170074B8DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDB471361CBB3F8000BDECE9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DDB471341CBB3E9F00BDECE9 /* DragImage.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		DDC92E321CBAFD170074B8DF = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +64,7 @@
 		DDC92E3D1CBAFD170074B8DF /* mylittlemonster */ = {
 			isa = PBXGroup;
 			children = (
+				DDB471361CBB3F8000BDECE9 /* Classes */,
 				DDC92E3E1CBAFD170074B8DF /* AppDelegate.swift */,
 				DDC92E401CBAFD170074B8DF /* ViewController.swift */,
 				DDC92E421CBAFD170074B8DF /* Main.storyboard */,
@@ -137,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDC92E411CBAFD170074B8DF /* ViewController.swift in Sources */,
+				DDB471351CBB3E9F00BDECE9 /* DragImage.swift in Sources */,
 				DDC92E3F1CBAFD170074B8DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +301,7 @@
 				DDC92E4F1CBAFD170074B8DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
