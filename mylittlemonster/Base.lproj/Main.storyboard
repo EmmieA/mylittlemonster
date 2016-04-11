@@ -60,19 +60,6 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="idle1" translatesAutoresizingMaskIntoConstraints="NO" id="BpA-eJ-266" userLabel="MyMonster" customClass="MonsterImage" customModule="mylittlemonster" customModuleProvider="target">
-                                <rect key="frame" x="66" y="286" width="376" height="247"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="247" id="Tox-zk-2Ed"/>
-                                    <constraint firstAttribute="width" constant="376" id="VHv-jM-3o5"/>
-                                </constraints>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="33" y="155" width="253" height="179"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="14" y="486" width="370" height="247"/>
-                                </variation>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="QII-34-KNk" userLabel="Health Food stack view">
                                 <rect key="frame" x="127" y="113" width="284" height="102"/>
                                 <subviews>
@@ -93,6 +80,19 @@
                                 </subviews>
                                 <variation key="heightClass=compact" axis="vertical" spacing="10"/>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="idle1" translatesAutoresizingMaskIntoConstraints="NO" id="BpA-eJ-266" userLabel="MyMonster" customClass="MonsterImage" customModule="mylittlemonster" customModuleProvider="target">
+                                <rect key="frame" x="81" y="274" width="396" height="264"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="264" id="Tox-zk-2Ed"/>
+                                    <constraint firstAttribute="width" constant="396" id="VHv-jM-3o5"/>
+                                </constraints>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="33" y="155" width="253" height="179"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="14" y="486" width="370" height="247"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -110,11 +110,11 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jMy-33-wrh" secondAttribute="bottom" id="FDO-hg-1WM"/>
                             <constraint firstItem="QII-34-KNk" firstAttribute="centerY" secondItem="2Bk-Ku-dVr" secondAttribute="centerY" id="Fnt-a8-2Dk"/>
                             <constraint firstItem="BpA-eJ-266" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-5" id="KrQ-6q-0fx"/>
-                            <constraint firstItem="RpV-yl-YdN" firstAttribute="top" secondItem="BpA-eJ-266" secondAttribute="bottom" id="Toe-gZ-9y1"/>
+                            <constraint firstItem="RpV-yl-YdN" firstAttribute="top" secondItem="BpA-eJ-266" secondAttribute="bottom" constant="-6" id="Toe-gZ-9y1"/>
                             <constraint firstItem="RpV-yl-YdN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="V3d-uX-y6m"/>
                             <constraint firstItem="eXj-vS-Ylm" firstAttribute="centerY" secondItem="2Bk-Ku-dVr" secondAttribute="centerY" constant="2" id="V7t-fG-nd8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BpA-eJ-266" secondAttribute="bottom" constant="66" id="Xrq-oN-UEd">
-                                <variation key="heightClass=compact-widthClass=compact" constant="68"/>
+                                <variation key="heightClass=compact-widthClass=compact" constant="62"/>
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="RpV-yl-YdN" secondAttribute="trailing" id="aK9-Ly-cgi"/>
                             <constraint firstItem="2Bk-Ku-dVr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="6" id="e8b-w3-eJt"/>
@@ -156,6 +156,9 @@
                         <outlet property="foodImage" destination="tzB-gx-XLA" id="m7A-uO-9tv"/>
                         <outlet property="healthImage" destination="aTb-M0-WZw" id="iFS-97-hUj"/>
                         <outlet property="monsterImage" destination="BpA-eJ-266" id="JZm-yZ-IKW"/>
+                        <outlet property="penalty1Image" destination="woG-1A-HWa" id="pMM-qi-5Xd"/>
+                        <outlet property="penalty2Image" destination="EYx-df-z2n" id="9r1-8H-L8z"/>
+                        <outlet property="penalty3Image" destination="6qp-aZ-jcu" id="2uI-2u-1sY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -168,7 +171,7 @@
         <image name="food" width="95" height="98"/>
         <image name="ground" width="1444" height="151"/>
         <image name="heart" width="95" height="98"/>
-        <image name="idle1" width="554" height="370"/>
+        <image name="idle1" width="608" height="384"/>
         <image name="livespanel" width="468" height="137"/>
         <image name="skull" width="95" height="98"/>
     </resources>
