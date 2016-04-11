@@ -63,7 +63,11 @@ class DragImage: UIImageView {
         if let touch = touches.first, let target = dropTarget {
             
             //Grab the position where the touch ended
-            let position = touch.locationInView(self.superview)
+            //superview?.superview was necessary because apparently when images are inside 
+            //of a stack view, the superview then becomes the stack view they're inside rather
+            //than it being the outermost superview.
+            //Originally it was just self.superview
+            let position = touch.locationInView(self.superview?.superview)
             
             //Is where the image was dragged anywhere inside the frame of the
             //intended target? Intended target is first param, the current position
@@ -79,20 +83,6 @@ class DragImage: UIImageView {
         }
 
         self.center = originalPosition
-        
-        
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -27,6 +28,15 @@ class ViewController: UIViewController {
     
     var currentPenalities       = 0
     var timer: NSTimer!
+    var monsterHappy: Bool      = true
+    var currentItem             = 0
+    
+    //Sounds
+    var musicPlayer:            AVAudioPlayer!
+    var sfxBite:                AVAudioPlayer!
+    var sfxHeart:               AVAudioPlayer!
+    var sfxDeath:               AVAudioPlayer!
+    var sfxSkull:               AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +60,58 @@ class ViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.itemDroppedOnCharacter(_:)), name: "onTargetDropped", object: nil)
         
+        do {
+            try musicPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:
+                NSBundle.mainBundle().pathForResource("cave-music", ofType: "mp3")!))
+            try sfxBite = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:
+                NSBundle.mainBundle().pathForResource("bite", ofType: "wav")!))
+            try sfxHeart = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:
+                NSBundle.mainBundle().pathForResource("heart", ofType: "wav")!))
+            try sfxDeath = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:
+                NSBundle.mainBundle().pathForResource("death", ofType: "wav")!))
+            try sfxSkull = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:
+                NSBundle.mainBundle().pathForResource("skull", ofType: "wav")!))
+            
+            musicPlayer.prepareToPlay()
+            musicPlayer.volume = 0.3
+            musicPlayer.play()
+            
+            sfxBite.prepareToPlay()
+            sfxHeart.prepareToPlay()
+            sfxDeath.prepareToPlay()
+            sfxSkull.prepareToPlay()
+            
+            sfxBite.volume = 0.4
+            sfxHeart.volume = 0.4
+            sfxDeath.volume = 0.4
+            sfxSkull.volume = 0.4
+            
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
+
+        disableItems()
         startTimer()
+        
     }
     
     
     //Function called by the event listener (observer) for the itemDroppedOnCharacter
     //event
     func itemDroppedOnCharacter(notif: AnyObject) {
-        print("ITEM DROPPED ON CHARACTER")
+        //Use for testing
+        //print("ITEM DROPPED ON CHARACTER")
+        
+        monsterHappy = true
+        startTimer()
+        disableItems()
+        
+        //Play the right sound
+        if currentItem == 0 {
+            sfxHeart.play()
+        } else {
+            sfxBite.play()
+        }
     }
     
     func startTimer() {
@@ -66,38 +120,80 @@ class ViewController: UIViewController {
             timer.invalidate()
         }
         
-        //repeats: true means the timer is executed every 3.0 seconds (in our case)
-        //Which means the changeGameState function is called every 3.0 seconds
-        timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(ViewController.changeGameState), userInfo: nil, repeats: true)
+        //repeats: true means the timer is executed every [n] seconds
+        //Which means the changeGameState function is called every [n] seconds
+        timer = NSTimer.scheduledTimerWithTimeInterval(3.0,
+                                                       target: self,
+                                                       selector: #selector(ViewController.changeGameState),
+                                                       userInfo: nil,
+                                                       repeats: true)
     }
     
     func changeGameState() {
-        currentPenalities += 1
         
-        if currentPenalities == 1 {
-            penalty1Image.alpha = OPAQUE
-            penalty2Image.alpha = DIM_ALPHA
-            penalty3Image.alpha = DIM_ALPHA
-        } else if currentPenalities == 2 {
-            penalty2Image.alpha = OPAQUE
-            penalty3Image.alpha = DIM_ALPHA
-        } else if currentPenalities >= 3 {
-            penalty3Image.alpha = OPAQUE
+        if !monsterHappy {
+            currentPenalities += 1
+            
+            sfxSkull.play()
+            
+            if currentPenalities == 1 {
+                penalty1Image.alpha = OPAQUE
+                penalty2Image.alpha = DIM_ALPHA
+                penalty3Image.alpha = DIM_ALPHA
+            } else if currentPenalities == 2 {
+                penalty2Image.alpha = OPAQUE
+                penalty3Image.alpha = DIM_ALPHA
+            } else if currentPenalities >= 3 {
+                penalty3Image.alpha = OPAQUE
+            } else {
+                penalty1Image.alpha = DIM_ALPHA
+                penalty2Image.alpha = DIM_ALPHA
+                penalty3Image.alpha = DIM_ALPHA
+                
+            }
+            
+            if currentPenalities >= MAX_PENALTY {
+                gameEnd()
+            }
+        }
+
+        //Determine what need the monster has next
+        //0 will be health, 1 will be food
+        let rand = Int(arc4random_uniform(2))
+        
+        if rand == 0 {
+            healthImage.alpha = OPAQUE
+            healthImage.userInteractionEnabled = true
+            
+            foodImage.alpha = DIM_ALPHA
+            foodImage.userInteractionEnabled = false
         } else {
-            penalty1Image.alpha = DIM_ALPHA
-            penalty2Image.alpha = DIM_ALPHA
-            penalty3Image.alpha = DIM_ALPHA
+            foodImage.alpha = OPAQUE
+            foodImage.userInteractionEnabled = true
+            
+            healthImage.alpha = DIM_ALPHA
+            healthImage.userInteractionEnabled = false
             
         }
         
-        if currentPenalities >= MAX_PENALTY {
-            gameEnd()
-        }
+        currentItem = rand
+        //Turn the happy indicator off which ensures if the user does nothing after 
+        //this iteration of the timer, when the function is entered again, the logic
+        //in the if branch will be executed
+        monsterHappy = false
     }
     
     func gameEnd() {
         timer.invalidate()
+        sfxDeath.play()
         monsterImage.playDeathAnimation()
+    }
+    
+    func disableItems() {
+        foodImage.alpha = DIM_ALPHA
+        foodImage.userInteractionEnabled = false
+        healthImage.alpha = DIM_ALPHA
+        healthImage.userInteractionEnabled = false
     }
     
 
