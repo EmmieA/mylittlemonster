@@ -60,7 +60,7 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="idle1" translatesAutoresizingMaskIntoConstraints="NO" id="BpA-eJ-266" userLabel="MyMonster">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="idle1" translatesAutoresizingMaskIntoConstraints="NO" id="BpA-eJ-266" userLabel="MyMonster" customClass="MonsterImage" customModule="mylittlemonster" customModuleProvider="target">
                                 <rect key="frame" x="66" y="286" width="376" height="247"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="247" id="Tox-zk-2Ed"/>

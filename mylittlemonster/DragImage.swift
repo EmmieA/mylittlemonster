@@ -49,7 +49,8 @@ class DragImage: UIImageView {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //Do something
+        //Use self.center as a testing tool
+//        self.center = originalPosition
     }
     
 }
